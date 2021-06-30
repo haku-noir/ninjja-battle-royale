@@ -6,7 +6,7 @@ import index_router from "./routes/index_router";
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.resolve(__dirname, "..", "..") + "/public"));
 
 app.use("/", index_router);
 
