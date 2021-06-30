@@ -1,9 +1,16 @@
 import express from "express";
+import path from "path";
+
+import index_router from "./routes/index_router";
 
 const app = express();
+const port = process.env.PORT || 3000;
 
-app.get("/", (_, res) => {
-  res.send("Hello World!");
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use("/", index_router);
+
+app.listen(port, (err?: any) => {
+  if (err) throw err;
+  console.log(`Server is running on http://localhost:${port}`);
 });
-
-app.listen(3000, () => console.log("Server is running"));
