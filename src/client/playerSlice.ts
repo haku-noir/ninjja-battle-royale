@@ -1,25 +1,31 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type Position = {
+export type Vec2 = {
   x: number;
   y: number;
 };
 
 export type PlayerState = {
-  pos: Position;
+  pos: Vec2;
+  vel: Vec2;
 };
 
 const initialState: PlayerState = {
   pos: { x: 0, y: 0 },
+  vel: { x: 0, y: 0 },
 };
 
 const playerSlice = createSlice({
   name: "player",
   initialState,
   reducers: {
-    setPos: (state, action: PayloadAction<Position>) => ({
+    setPos: (state, action: PayloadAction<Vec2>) => ({
       ...state,
       pos: action.payload,
+    }),
+    setVel: (state, action: PayloadAction<Vec2>) => ({
+      ...state,
+      vel: action.payload,
     }),
   },
 });
