@@ -5,14 +5,28 @@ export type Vec2 = {
   y: number;
 };
 
+export type ImgDic4 {
+  top: string,
+  bottom: string,
+  right: string,
+  left: string
+}
+
 export type PlayerState = {
   pos: Vec2;
   vel: Vec2;
+  img: ImgDic4;
 };
 
 const initialState: PlayerState = {
   pos: { x: 0, y: 0 },
   vel: { x: 0, y: 0 },
+  img: {
+    top: "player_top.png",
+    bottom: "player_bottom.png",
+    right: "player_right.png",
+    left: "player_left.png",
+  }
 };
 
 const playerSlice = createSlice({
@@ -26,6 +40,10 @@ const playerSlice = createSlice({
     setVel: (state, action: PayloadAction<Vec2>) => ({
       ...state,
       vel: action.payload,
+    }),
+    setImg: (state, action: PayloadAction<ImgDic4>) => ({
+      ...state,
+      img: action.payload,
     }),
   },
 });
