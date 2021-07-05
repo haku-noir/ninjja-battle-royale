@@ -1,16 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { PLAYER_IMAGE } from "./constants";
 
 export type Vec2 = {
   x: number;
   y: number;
 };
 
-export type ImgDic4 {
-  top: string,
-  bottom: string,
-  right: string,
-  left: string
-}
+export type ImgDic4 = {
+  top: string;
+  bottom: string;
+  right: string;
+  left: string;
+};
 
 export type PlayerState = {
   pos: Vec2;
@@ -21,12 +22,7 @@ export type PlayerState = {
 const initialState: PlayerState = {
   pos: { x: 0, y: 0 },
   vel: { x: 0, y: 0 },
-  img: {
-    top: "player_top.png",
-    bottom: "player_bottom.png",
-    right: "player_right.png",
-    left: "player_left.png",
-  }
+  img: PLAYER_IMAGE,
 };
 
 const playerSlice = createSlice({
