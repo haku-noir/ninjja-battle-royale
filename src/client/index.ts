@@ -1,12 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { HEIGHT, SIZE, WIDTH } from "./constants";
+import { HEIGHT, KEY, SIZE, WIDTH } from "./constants";
 import playerSlice from "./playerSlice";
+import playerHandler from "./playerHander";
 
 const store = configureStore({
   reducer: {
     player: playerSlice.reducer,
   },
 });
+
+document.body.addEventListener("keydown", playerHandler.keydown);
 
 const draw = () => {
   const canvas: HTMLCanvasElement = <HTMLCanvasElement>(
@@ -18,8 +21,14 @@ const draw = () => {
 
   ctx.fillRect(0, 0, WIDTH * SIZE, HEIGHT * SIZE);
 
-  ctx.drawImage(player.img.bottom, player.pos.x, player.pos.y);
+  ctx.drawImage(
+    <HTMLImageElement>document.getElementById(player.img.bottom),
+    player.pos.x,
+    player.pos.y
+  );
 };
 
 store.subscribe(draw);
 draw();
+
+export default store;

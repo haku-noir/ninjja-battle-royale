@@ -7,10 +7,10 @@ export type Vec2 = {
 };
 
 export type ImgDic4 = {
-  top: HTMLImageElement;
-  bottom: HTMLImageElement;
-  right: HTMLImageElement;
-  left: HTMLImageElement;
+  top: string;
+  bottom: string;
+  left: string;
+  right: string;
 };
 
 export type PlayerState = {
@@ -44,6 +44,6 @@ const playerSlice = createSlice({
   },
 });
 
-export const { setPos } = playerSlice.actions;
+export const playerActions = playerSlice.actions;
 
 export default playerSlice;
