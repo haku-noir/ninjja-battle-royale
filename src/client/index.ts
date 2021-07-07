@@ -9,8 +9,6 @@ const store = configureStore({
   },
 });
 
-document.body.addEventListener("keydown", playerHandler.keydown);
-
 const draw = () => {
   const canvas: HTMLCanvasElement = <HTMLCanvasElement>(
     document.getElementById("scene")
@@ -28,7 +26,15 @@ const draw = () => {
   );
 };
 
-store.subscribe(draw);
+const update = () => {
+  playerHandler.update();
+  draw();
+};
+
+document.body.addEventListener("keydown", playerHandler.keydown);
+document.body.addEventListener("keyup", playerHandler.keyup);
+
+setInterval(update, 1000 / 60);
 draw();
 
 export default store;
