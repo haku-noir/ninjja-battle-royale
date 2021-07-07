@@ -1,11 +1,25 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { HEIGHT, SIZE, WIDTH } from "./constants";
 import playerSlice from "./playerSlice";
 
 const store = configureStore({
-  reducer: playerSlice.reducer,
+  reducer: {
+    player: playerSlice.reducer,
+  },
 });
 
-const canvas: any = document.getElementById("scene");
-const ctx: CanvasRenderingContext2D = canvas.getContext("2d");
+const draw = () => {
+  const canvas: HTMLCanvasElement = <HTMLCanvasElement>(
+    document.getElementById("scene")
+  );
+  const ctx: CanvasRenderingContext2D = canvas.getContext("2d");
 
-ctx.fillRect(0, 0, 100, 100);
+  const player = store.getState().player;
+
+  ctx.fillRect(0, 0, WIDTH * SIZE, HEIGHT * SIZE);
+
+  ctx.drawImage(player.img.bottom, player.pos.x, player.pos.y);
+};
+
+store.subscribe(draw);
+draw();

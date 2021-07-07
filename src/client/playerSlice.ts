@@ -7,10 +7,10 @@ export type Vec2 = {
 };
 
 export type ImgDic4 = {
-  top: string;
-  bottom: string;
-  right: string;
-  left: string;
+  top: HTMLImageElement;
+  bottom: HTMLImageElement;
+  right: HTMLImageElement;
+  left: HTMLImageElement;
 };
 
 export type PlayerState = {
