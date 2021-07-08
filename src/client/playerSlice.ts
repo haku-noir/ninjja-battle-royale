@@ -1,45 +1,57 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PLAYER_IMAGE } from "./constants";
 
-export type Vec2 = {
+export type Position = {
   x: number;
   y: number;
 };
 
-export type ImgDic4 = {
-  top: string;
-  bottom: string;
-  left: string;
-  right: string;
+export type Velocity = {
+  vx: number;
+  vy: number;
 };
 
-export type PlayerState = {
-  pos: Vec2;
-  vel: Vec2;
-  img: ImgDic4;
+export type ImgDic4 = {
+  img_top: string;
+  img_bottom: string;
+  img_left: string;
+  img_right: string;
 };
+
+export type PlayerState = Position & Velocity & ImgDic4;
 
 const initialState: PlayerState = {
-  pos: { x: 0, y: 0 },
-  vel: { x: 0, y: 0 },
-  img: PLAYER_IMAGE,
+  x: 0,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  ...PLAYER_IMAGE,
 };
 
 const playerSlice = createSlice({
   name: "player",
   initialState,
   reducers: {
-    setPos: (state, action: PayloadAction<Vec2>) => ({
+    setPos: (
+      state: PlayerState,
+      action: PayloadAction<Position>
+    ): PlayerState => ({
       ...state,
-      pos: action.payload,
+      ...action.payload,
     }),
-    setVel: (state, action: PayloadAction<Vec2>) => ({
+    setVel: (
+      state: PlayerState,
+      action: PayloadAction<Velocity>
+    ): PlayerState => ({
       ...state,
-      vel: action.payload,
+      ...action.payload,
     }),
-    setImg: (state, action: PayloadAction<ImgDic4>) => ({
+    setImg: (
+      state: PlayerState,
+      action: PayloadAction<ImgDic4>
+    ): PlayerState => ({
       ...state,
-      img: action.payload,
+      ...action.payload,
     }),
   },
 });

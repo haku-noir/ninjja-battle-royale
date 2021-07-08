@@ -20,9 +20,9 @@ const draw = () => {
   ctx.fillRect(0, 0, WIDTH * SIZE, HEIGHT * SIZE);
 
   ctx.drawImage(
-    <HTMLImageElement>document.getElementById(player.img.bottom),
-    player.pos.x,
-    player.pos.y
+    <HTMLImageElement>document.getElementById(player.img_bottom),
+    player.x,
+    player.y
   );
 };
 
