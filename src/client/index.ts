@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { HEIGHT, KEY, SIZE, WIDTH } from "./constants";
+import { HEIGHT, SIZE, WIDTH } from "./constants";
+import entitySlice from "./EntitySlice";
 import playerSlice from "./playerSlice";
 import playerHandler from "./playerHander";
 
 const store = configureStore({
   reducer: {
+    entity: entitySlice.reducer,
     player: playerSlice.reducer,
   },
 });
