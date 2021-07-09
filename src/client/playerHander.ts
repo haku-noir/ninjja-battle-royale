@@ -9,47 +9,45 @@ const playerHandler = {
 
     dispatch(
       playerActions.setPos({
-        x: player.pos.x + player.vel.x,
-        y: player.pos.y + player.vel.y,
+        x: player.x + player.vx,
+        y: player.y + player.vy,
       })
     );
-    console.log(player);
   },
   keydown: (event: KeyboardEvent) => {
     const player = store.getState().player;
-    const vel = player.vel;
     const dispatch = store.dispatch;
 
     switch (event.key) {
       case KEY.up:
         dispatch(
           playerActions.setVel({
-            ...vel,
-            y: -1,
+            vx: player.vx,
+            vy: -1,
           })
         );
         break;
       case KEY.down:
         dispatch(
           playerActions.setVel({
-            ...vel,
-            y: 1,
+            vx: player.vx,
+            vy: 1,
           })
         );
         break;
       case KEY.left:
         dispatch(
           playerActions.setVel({
-            ...vel,
-            x: -1,
+            vx: -1,
+            vy: player.vy,
           })
         );
         break;
       case KEY.right:
         dispatch(
           playerActions.setVel({
-            ...vel,
-            x: 1,
+            vx: 1,
+            vy: player.vy,
           })
         );
         break;
@@ -57,7 +55,6 @@ const playerHandler = {
   },
   keyup: (event: KeyboardEvent) => {
     const player = store.getState().player;
-    const vel = player.vel;
     const dispatch = store.dispatch;
 
     switch (event.key) {
@@ -65,8 +62,8 @@ const playerHandler = {
       case KEY.down:
         dispatch(
           playerActions.setVel({
-            ...vel,
-            y: 0,
+            vx: player.vx,
+            vy: 0,
           })
         );
         break;
@@ -74,8 +71,8 @@ const playerHandler = {
       case KEY.right:
         dispatch(
           playerActions.setVel({
-            ...vel,
-            x: 0,
+            vx: 0,
+            vy: player.vy,
           })
         );
         break;
