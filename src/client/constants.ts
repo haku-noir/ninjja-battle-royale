@@ -12,7 +12,7 @@ export const PLAYER_IMAGE: ImgDic4 = {
   img_right: "player_right",
 };
 
-export const MAP_IMAGE = ["wall"];
+export const MAP_IMAGE = ["floor", "wall"];
 
 export const FIELD = [
   [
