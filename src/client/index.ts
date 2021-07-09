@@ -3,6 +3,7 @@ import { HEIGHT, SIZE, WIDTH } from "./constants";
 import entitySlice from "./EntitySlice";
 import playerSlice from "./playerSlice";
 import playerHandler from "./playerHandler";
+import { drawMap, drawPlayer } from "./drawSystem";
 
 const store = configureStore({
   reducer: {
@@ -17,15 +18,10 @@ const draw = () => {
   );
   const ctx: CanvasRenderingContext2D = canvas.getContext("2d");
 
-  const player = store.getState().player;
-
   ctx.fillRect(0, 0, WIDTH * SIZE, HEIGHT * SIZE);
 
-  ctx.drawImage(
-    <HTMLImageElement>document.getElementById(player.img_bottom),
-    player.x,
-    player.y
-  );
+  drawMap(ctx);
+  drawPlayer(ctx);
 };
 
 const update = () => {
@@ -37,6 +33,5 @@ document.body.addEventListener("keydown", playerHandler.keydown);
 document.body.addEventListener("keyup", playerHandler.keyup);
 
 setInterval(update, 1000 / 60);
-draw();
 
 export default store;
