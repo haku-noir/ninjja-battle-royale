@@ -1,9 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { PLAYER_IMAGE } from "./constants";
+import { HEIGHT, PLAYER_IMAGE, SIZE, WIDTH } from "./constants";
 
 export type Position = {
   x: number;
   y: number;
+};
+
+export type Scale = {
+  sx: number;
+  sy: number;
 };
 
 export type Velocity = {
@@ -18,11 +23,13 @@ export type ImgDic4 = {
   img_right: string;
 };
 
-export type PlayerState = Position & Velocity & ImgDic4;
+export type PlayerState = Position & Scale & Velocity & ImgDic4;
 
 const initialState: PlayerState = {
-  x: 0,
-  y: 0,
+  x: (WIDTH * SIZE) / 2,
+  y: (HEIGHT * SIZE) / 2,
+  sx: SIZE,
+  sy: SIZE,
   vx: 0,
   vy: 0,
   ...PLAYER_IMAGE,
@@ -35,10 +42,18 @@ const playerSlice = createSlice({
     setPos: (
       state: PlayerState,
       action: PayloadAction<Position>
-    ): PlayerState => ({
-      ...state,
-      ...action.payload,
-    }),
+    ): PlayerState => {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    },
+    setScl: (state: PlayerState, action: PayloadAction<Scale>): PlayerState => {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    },
     setVel: (
       state: PlayerState,
       action: PayloadAction<Velocity>

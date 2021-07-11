@@ -12,9 +12,11 @@ export const PLAYER_IMAGE: ImgDic4 = {
   img_right: "player_right",
 };
 
+export const OBSTACLE_TILES = [1];
+
 export const MAP_IMAGE = ["floor", "wall"];
 
-export const FIELD = [
+export const TILES = [
   [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 1, 1, 1, 1,

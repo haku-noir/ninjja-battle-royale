@@ -4,7 +4,7 @@ import { SIZE } from "./constants";
 export const drawMap = (ctx: CanvasRenderingContext2D) => {
   const map = store.getState().entity.map;
 
-  map.field.forEach((row, h) => {
+  map.tiles.forEach((row, h) => {
     row.forEach((column, w) => {
       ctx.drawImage(
         <HTMLImageElement>document.getElementById(map.img[column]),

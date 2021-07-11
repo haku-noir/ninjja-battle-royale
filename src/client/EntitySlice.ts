@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FIELD, HEIGHT, MAP_IMAGE, SIZE, WIDTH } from "./constants";
-import { PlayerState } from "./playerSlice";
+import { TILES, HEIGHT, MAP_IMAGE, SIZE, WIDTH } from "./constants";
+import { PlayerState, Scale } from "./playerSlice";
 
 export type MapState = {
-  size: number;
+  tile: Scale;
   width: number;
   height: number;
-  field: Array<Array<number>>;
+  tiles: Array<Array<number>>;
   img: Array<string>;
 };
 
@@ -18,10 +18,13 @@ export type EntityState = {
 const initialState: EntityState = {
   players: [],
   map: {
-    size: SIZE,
+    tile: {
+      sx: SIZE,
+      sy: SIZE,
+    },
     width: WIDTH,
     height: HEIGHT,
-    field: FIELD,
+    tiles: TILES,
     img: MAP_IMAGE,
   },
 };

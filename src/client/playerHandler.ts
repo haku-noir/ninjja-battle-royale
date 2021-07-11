@@ -1,18 +1,21 @@
 import store from "./index";
 import { KEY } from "./constants";
 import { playerActions } from "./playerSlice";
+import { canMove } from "./mapSystem";
 
 const playerHandler = {
   update: () => {
     const player = store.getState().player;
     const dispatch = store.dispatch;
 
-    dispatch(
-      playerActions.setPos({
-        x: player.x + player.vx,
-        y: player.y + player.vy,
-      })
-    );
+    if (canMove(player)) {
+      dispatch(
+        playerActions.setPos({
+          x: player.x + player.vx,
+          y: player.y + player.vy,
+        })
+      );
+    }
   },
   keydown: (event: KeyboardEvent) => {
     const player = store.getState().player;
