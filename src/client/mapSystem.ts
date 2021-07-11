@@ -5,15 +5,14 @@ import { Position, Scale, Velocity } from "./playerSlice";
 export const getTile = (pos: Position): number => {
   const map = store.getState().entity.map;
 
-  console.log(pos.y, pos.y / map.tile.sy);
   return map.tiles[Math.floor(pos.y / map.tile.sy)][
     Math.floor(pos.x / map.tile.sx)
   ];
 };
 
 export const sqVerts = (sq: Position & Scale): Array<Position> => {
-  const x1 = sq.x + sq.sx;
-  const y1 = sq.y + sq.sy;
+  const x1 = sq.x;
+  const y1 = sq.y;
   const x2 = x1 + sq.sx;
   const y2 = y1 + sq.sy;
 

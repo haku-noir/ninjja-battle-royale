@@ -1,5 +1,4 @@
 import store from "./index";
-import { SIZE } from "./constants";
 
 export const drawMap = (ctx: CanvasRenderingContext2D) => {
   const map = store.getState().entity.map;
@@ -8,10 +7,10 @@ export const drawMap = (ctx: CanvasRenderingContext2D) => {
     row.forEach((column, w) => {
       ctx.drawImage(
         <HTMLImageElement>document.getElementById(map.img[column]),
-        w * SIZE,
-        h * SIZE,
-        SIZE,
-        SIZE
+        w * map.tile.sx,
+        h * map.tile.sy,
+        map.tile.sx,
+        map.tile.sy
       );
     });
   });
@@ -23,6 +22,8 @@ export const drawPlayer = (ctx: CanvasRenderingContext2D) => {
   ctx.drawImage(
     <HTMLImageElement>document.getElementById(player.img_bottom),
     player.x,
-    player.y
+    player.y,
+    player.sx,
+    player.sy
   );
 };

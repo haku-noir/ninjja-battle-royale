@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { HEIGHT, SIZE, WIDTH } from "./constants";
 import entitySlice from "./EntitySlice";
 import playerSlice from "./playerSlice";
 import playerHandler from "./playerHandler";
@@ -18,7 +17,9 @@ const draw = () => {
   );
   const ctx: CanvasRenderingContext2D = canvas.getContext("2d");
 
-  ctx.fillRect(0, 0, WIDTH * SIZE, HEIGHT * SIZE);
+  const map = store.getState().entity.map;
+
+  ctx.fillRect(0, 0, map.tile.sx * map.width, map.tile.sy * map.height);
 
   drawMap(ctx);
   drawPlayer(ctx);
